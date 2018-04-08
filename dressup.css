@@ -5,13 +5,12 @@ body{
 
 img {
   position: absolute;
-  margin-left: 10%;
-  height:80%;
   display:inline-block;
 }
 
 button{
   font-size:20pt;
+  margin-left:200px;
   margin-top:10%;
 }
 
