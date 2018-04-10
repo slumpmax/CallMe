@@ -23,7 +23,7 @@ for (var i = 0, n = pix.length; i <n; i += 4) {
         imgd.data[i] = uniqueColor[0];   // Red component
         imgd.data[i+1] = uniqueColor[1]; // Blue component
         imgd.data[i+2] = uniqueColor[2]; // Green component
- //     }
+    }
 }
 ctx.putImageData(imgd, 0, 0);
 
