@@ -111,7 +111,7 @@ function drawColor(ctx, img, clr) {
 //		tempPix[i+3] = 255;
 	}	
 	tempContext.putImageData(tempImgd, 0, 0);
-	ctx.drawImage(tempCanvas, 0, 0);
+	ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
 }
 
 function updateChar(){
@@ -126,11 +126,11 @@ function updateChar(){
 	drawColor(ctx, imgHairColor[HairType], HairColor);
 	drawColor(ctx, imgSleeveColor[SleeveType], ClothColor);
 	drawColor(ctx, imgCollarColor[CollarType], ClothColor);
-	ctx.drawImage(imgBody, 0, 0);
-	ctx.drawImage(imgForehead[ForeheadType], 0, 0);
-	ctx.drawImage(imgHair[HairType], 0, 0);
-	ctx.drawImage(imgSleeve[SleeveType], 0, 0);
-	ctx.drawImage(imgCollar[CollarType], 0, 0);
+	ctx.drawImage(imgBody, 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(imgForehead[ForeheadType], 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(imgHair[HairType], 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(imgSleeve[SleeveType], 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(imgCollar[CollarType], 0, 0, canvas.width, canvas.height);
 }
 
 function updateHairColor(event) {
