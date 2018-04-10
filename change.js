@@ -2,7 +2,8 @@ var img2 = new Image,
   canvas2 = document.createElement('canvas'),
   ctx2 = canvas2.getContext("2d"),
   map2 = ctx2.getImageData(0,0,canvas2.width,canvas2.height),
-  pix2 = map2.data;
+  pix2 = map2.data,
+  uniqueColor = [128,100,192]; // Blue for an example, can change this value to be anything.
 
 img2.src = "images/body_color.png",
 canvas2.width = img2.width;
@@ -22,8 +23,7 @@ function conv(){
 var canvas = document.getElementById("canvas"),
     image = document.getElementById("testImage"),
     savedImageData = document.getElementById("imageData"),
-    ctx = canvas.getContext("2d"),
-    uniqueColor = [255,200,192]; // Blue for an example, can change this value to be anything.
+    ctx = canvas.getContext("2d");
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.drawImage(img2,0,0);
