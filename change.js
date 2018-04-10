@@ -21,11 +21,12 @@ var imgd = ctx.getImageData(0, 0, canvas.width, canvas.height),
 
 // Loops through all of the pixels and modifies the components.
 for (var i = 0, n = pix.length; i <n; i += 4) {
-    if (pix2[i+3]!=0){
+
         imgd.data[i] = uniqueColor[0];   // Red component
         imgd.data[i+1] = uniqueColor[1]; // Blue component
         pix[i+2] = uniqueColor[2]; // Green component
-    }
+        pix[i+3] = pix2[i+3];
+    
 }
 ctx.putImageData(imgd, 0, 0);
 ctx.drawImage(image,0,0);
