@@ -8,6 +8,10 @@ var ForeheadType = 3, 	MaxForehead = 6;
 var SleeveType = 2, 	MaxSleeve = 5;
 var CollarType = 2, 	MaxCollar = 5;
 
+var BodyBaseColor = [255,200,162];
+var HairBaseColor = [128,128,128];
+var ClothBaseColor = [255,255,255];
+
 var BodyColor = [255, 217, 147];
 var HairColor = [128, 64, 64];
 var ClothColor = [17, 188, 238];
@@ -97,18 +101,21 @@ function startup() {
 	updateChar();
 }
 
-function drawColor(ctx, img, clr) {
+function drawColor(ctx, img, clr, bclr) {
 	tempCanvas.width = img.width;
 	tempCanvas.height = img.height;
 	var tempContext = tempCanvas.getContext("2d");
+	tempContext.clearRect(0, 0, img.width, img.height);
 	tempContext.drawImage(img, 0, 0);
 	var tempImgd = tempContext.getImageData(0, 0, img.width, img.height);
 	var tempPix = tempImgd.data;
 	for (var i = 0, n = tempPix.length; i <n; i += 4) {
-		tempPix[i] = clr[0];   // Red component
-		tempPix[i+1] = clr[1]; // Blue component
-		tempPix[i+2] = clr[2]; // Green component
-//		tempPix[i+3] = 255;
+		if ((tempPix[i]-bclr[0]<10) && (tempPix[i+1]-bclr[1]<10) && (tempPix[i+2]-bclr[2]<10)) {
+			tempPix[i] = clr[0];   // Red component
+			tempPix[i+1] = clr[1]; // Blue component
+			tempPix[i+2] = clr[2]; // Green component
+//			tempPix[i+3] = 255;
+		} 
 	}	
 	tempContext.putImageData(tempImgd, 0, 0);
 	ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
@@ -121,11 +128,11 @@ function updateChar(){
 	if(SleeveType > MaxSleeve) SleeveType = 1;
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	drawColor(ctx, imgBodyColor, BodyColor);
-	drawColor(ctx, imgForeheadColor[ForeheadType], HairColor);
-	drawColor(ctx, imgHairColor[HairType], HairColor);
-	drawColor(ctx, imgSleeveColor[SleeveType], ClothColor);
-	drawColor(ctx, imgCollarColor[CollarType], ClothColor);
+	drawColor(ctx, imgBodyColor, BodyColor, BodyBaseColor);
+	drawColor(ctx, imgForeheadColor[ForeheadType], HairColor, HairBaseColor);
+	drawColor(ctx, imgHairColor[HairType], HairColor, HairBaseColor);
+	drawColor(ctx, imgSleeveColor[SleeveType], ClothColor, ClothBaseColor);
+	drawColor(ctx, imgCollarColor[CollarType], ClothColor, ClothBaseColor);
 	ctx.drawImage(imgBody, 0, 0, canvas.width, canvas.height);
 	ctx.drawImage(imgForehead[ForeheadType], 0, 0, canvas.width, canvas.height);
 	ctx.drawImage(imgHair[HairType], 0, 0, canvas.width, canvas.height);
